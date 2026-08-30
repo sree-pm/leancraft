@@ -75,9 +75,9 @@
       },
       "06-prd.md": {
         "required": true,
-        "description": "Goals, non-goals, flows, functional + NFRs",
+        "description": "Goals, non-goals, flows, FRs, NFRs + lean overview (metrics, assumptions, RACI, PESTEL, 4 Whys, timeline, legal)",
         "template": "templates/discovery/06-prd.md",
-        "sections": ["goals", "non-goals", "user-flows", "functional-reqs", "nfrs", "risks"],
+        "sections": ["goals", "non-goals", "success-metrics", "assumptions", "user-flows", "functional-reqs", "nfrs", "stakeholders", "raci", "pestel", "4-whys", "timeline", "legal", "risks"],
         "rules": { "minUserFlows": 3, "minFunctionalReqs": 10 }
       }
     },
