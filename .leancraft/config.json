@@ -134,10 +134,25 @@
     }
   },
   "researchMap": {
-    "02-research.md": { "tools": ["tavily_search", "firecrawl"], "queries": ["{idea} pain", "{idea} reddit", "{idea} alternative"], "requireURLs": true },
-    "03-competitive.md": { "tools": ["tavily_search"], "requirePricing": true },
-    "04-personas.md": { "derivedFrom": "02-research.md", "noNewSearch": true },
-    "06-prd.md": { "derivedFrom": ["02-research.md", "04-personas.md", "05-jtbd.md"] }
+    "02-research.md": {
+      "requires": [
+        { "type": "web_search", "examples": ["tavily_search", "exa_search", "brave_search", "WebSearch", "web_search"], "purpose": "find URLs with real quotes" },
+        { "type": "web_fetch", "examples": ["firecrawl", "exa_fetch", "WebFetch", "web_fetch", "fetch"], "purpose": "fetch page as markdown to extract verbatim quote" }
+      ],
+      "queries": ["{idea} pain", "{idea} reddit", "{idea} alternative", "{idea} complaint"],
+      "requireURLs": true,
+      "fallback": "If no tool of type web_search/web_fetch exists, STOP. Do NOT invent. Write to agent/status.md: 'BLOCKED: No web_search available — human must provide 02-research.md or connect a search connector (Tavily/Exa/Brave)' and append to joint/decisions.log.md. Ask human to paste research or enable a connector."
+    },
+    "03-competitive.md": {
+      "requires": [{ "type": "web_search", "examples": ["tavily_search", "exa_search", "brave_search", "WebSearch"], "purpose": "find competitors + pricing pages" }],
+      "requirePricing": true,
+      "fallback": "If no web_search, STOP. Write to agent/status.md and ask human. Do NOT invent pricing."
+    },
+    "04-personas.md": { "derivedFrom": "02-research.md", "noNewSearch": true, "requires": [] },
+    "05-jtbd.md": { "derivedFrom": ["02-research.md", "03-competitive.md", "04-personas.md"], "requires": [] },
+    "06-prd.md": { "derivedFrom": ["02-research.md", "04-personas.md", "05-jtbd.md"], "requires": [] },
+    "intent.md": { "derivedFrom": ["06-prd.md"], "requires": [] },
+    "system.md": { "derivedFrom": ["06-prd.md", "02-research.md"], "requires": [] }
   },
   "validation": {
     "command": "npm run leancraft:validate",

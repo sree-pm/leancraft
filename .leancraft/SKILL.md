@@ -27,21 +27,25 @@ If any `human/**` is DRAFT or missing, **do not code**. Draft docs first.
 - `conditional`: `07-data`, `08-agents`, `09-skills`, `10-ux`, `11-design-system` — only if product needs them (see config). Do not create `12-future.md`.
 - Each doc has `required sections` + `min counts` (e.g., 02 needs 12 pains P1-P12, 12 URLs; 03 needs 9 competitors + $; 06 needs 3 flows + 10 FRs). `validate` blocks Lock if you miss one.
 
-## 4. RESEARCH MAP — WHAT TO SEARCH PER DOC (anti-hallucination)
+## 4. RESEARCH MAP — WHAT TO SEARCH PER DOC (type, not tool name)
 
-| Doc | What to do | Tools | What to compile | Validation |
-|---|---|---|---|---|
-| `02-research.md` | Search `{idea} pain, {idea} reddit, {idea} alternative, {idea} complaint` on Reddit/X/HN/G2 | `tavily_search` + `firecrawl` | 12 pains P1-P12, each `Quote + URL + Date + Platform` (fetchable) | 12 headings P1-P12 + 12 URLs |
-| `03-competitive.md` | Search `{idea} vs, {idea} alternative, {idea} pricing` | `tavily_search` | 9+ competitors with URL + pricing table with `$`, 5+ wedges | 9 URLs + `$` |
-| `04-personas.md` | **DERIVE FROM `02-research.md` P# ONLY — no new search** | — | 5 personas, each pain links to P#, + affinity map | 5 personas + P# links |
-| `05-jtbd.md` | **DERIVE FROM `02,03,04`** | — | JTBD per persona + empathy maps + pain matrix | 5 empathy maps + matrix |
+Your `web_search` may be `tavily_search`, `exa_search`, `brave_search`, or `WebSearch` — any counts. Your `web_fetch` may be `firecrawl`, `exa_fetch`, `WebFetch`, or `fetch` — any counts. Match by **type**, not name.
+
+| Doc | What to do | Type Needed | Examples | What to compile | Validation |
+|---|---|---|---|---|---|
+| `02-research.md` | Search `{idea} pain, {idea} reddit, {idea} alternative, {idea} complaint` on Reddit/X/HN/G2 | `web_search` + `web_fetch` | Tavily/Exa/Brave/WebSearch + Firecrawl/Exa_Fetch/WebFetch | 12 pains P1-P12, each `Quote + URL + Date + Platform` (fetchable) | 12 headings P1-P12 + 12 URLs |
+| `03-competitive.md` | Search `{idea} vs, {idea} alternative, {idea} pricing` | `web_search` | Tavily/Exa/Brave/WebSearch | 9+ competitors with URL + pricing table with `$`, 5+ wedges | 9 URLs + `$` |
+| `04-personas.md` | **DERIVE FROM `02-research.md` P# ONLY — no new search** | — | — | 5 personas, each pain links to P#, + affinity map | 5 personas + P# links |
+| `05-jtbd.md` | **DERIVE FROM `02,03,04`** | — | — | JTBD per persona + empathy maps + pain matrix | 5 empathy maps + matrix |
 | `06-prd.md` | **DERIVE FROM `02,04,05`** | — | ≥3 flows, ≥10 FRs (FR-01…), NFRs, risks | 3 flows + 10 FRs |
-| `intent.md` | **DISTILL FROM `06-prd.md`** | — | ≥3 invariants (I1:) with Check command + ≥2 oracles (O1:) | 3 I + 2 O |
-| `system.md` | **DISTILL FROM `06,02`** | repo scan | Pinned stack + architecture + decisions | pinned versions |
-| `guardrails.md` | **DISTILL FROM `system.md`** | — | Security/perf/a11y/i18n with Check commands | 4 sections |
-| `features/*.md` | **1 per flow from `06-prd.md`** — `042-kebab-case.md` | — | Invariants + oracles + acceptance + Source Trace: FR-# + Persona | trace present |
+| `intent.md` | **DISTILL FROM `06-prd.md`** | — | — | ≥3 invariants (I1:) with Check command + ≥2 oracles (O1:) | 3 I + 2 O |
+| `system.md` | **DISTILL FROM `06,02`** | repo scan | — | Pinned stack + architecture + decisions | pinned versions |
+| `guardrails.md` | **DISTILL FROM `system.md`** | — | — | Security/perf/a11y/i18n with Check commands | 4 sections |
+| `features/*.md` | **1 per flow from `06-prd.md`** — `042-kebab-case.md` | — | — | Invariants + oracles + acceptance + Source Trace: FR-# + Persona | trace present |
 
-**If `tavily_search` returns 0 results, say so in `agent/status.md`, do not invent.** For `04,05,06,intent` you MUST cite `P#`/`FR-#` — inventing a new pain is a failure.
+**If you have no tool of that type:** STOP. Do NOT invent. Write to `agent/status.md`: `BLOCKED: No web_search available — human must provide 02-research.md or connect a search connector (Tavily/Exa/Brave)` and append to `joint/decisions.log.md`. Ask human directly in chat. Also log: `Inform user in chat + docs that web search is unavailable and human must paste research or enable a connector.`
+
+**Anti-hallucination:** If your `web_search` returns 0 results, say so in `status.md`, do not invent. For `04,05,06,intent` you MUST cite `P#`/`FR-#` — inventing a new pain is a failure.
 
 ## 5. ONE DOC PER FEATURE — HARD RULE
 

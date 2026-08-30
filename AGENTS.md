@@ -26,21 +26,25 @@ If any `human/**` is `DRAFT` or missing, **do not code**. Draft docs first, run 
 - Each doc has `required sections` + `min counts`. `validate` will block Lock if you miss one.
 - **Never hallucinate URLs, quotes, or pricing.** Every quote in `02-research.md` needs verbatim `Quote + URL + Date + Platform` that is fetchable. Every competitor in `03-competitive.md` needs real URL + pricing with `$`. `validate` checks counts; human checks truth.
 
-## RESEARCH MAP — WHAT TO SEARCH PER DOC
+## RESEARCH MAP — WHAT TO SEARCH PER DOC (type, not tool name)
 
-| Doc | Search / Derive | Tools | What to compile |
-|---|---|---|---|
-| `02-research.md` | Search `{idea} pain, {idea} reddit, {idea} alternative, {idea} complaint` on Reddit/X/HN/G2 | `tavily_search` + `firecrawl` | 12 pains P1-P12, each with Quote + URL + Date |
-| `03-competitive.md` | Search `{idea} vs, {idea} alternative, {idea} pricing` | `tavily_search` | 9+ competitors with URL + pricing table ($), 5+ wedges |
-| `04-personas.md` | **DERIVE FROM `02-research.md` P# ONLY** — no new search | — | 5 personas, each pain links to P#, + affinity map |
-| `05-jtbd.md` | **DERIVE FROM `02,03,04`** | — | JTBD per persona + empathy maps + pain matrix |
-| `06-prd.md` | **DERIVE FROM `02,04,05`** | — | ≥3 flows, ≥10 FRs (FR-01...), NFRs, risks |
-| `intent.md` | **DISTILL FROM `06-prd.md`** | — | ≥3 invariants (I1:) with Check command + ≥2 oracles |
-| `system.md` | **DISTILL FROM `06,02`** | repo scan | Pinned stack + architecture + decisions |
-| `guardrails.md` | **DISTILL FROM `system.md`** | — | Security/perf/a11y/i18n with Check commands |
-| `features/*.md` | **1 per flow from `06-prd.md`** — `042-kebab-case.md` | — | Invariants + oracles + acceptance + Source Trace |
+Your `web_search` may be `tavily_search`, `exa_search`, `brave_search`, or `WebSearch` — any counts. Your `web_fetch` may be `firecrawl`, `exa_fetch`, `WebFetch`, or `fetch` — any counts. Match by **type**, not name.
 
-**Anti-hallucination:** If `tavily_search` returns 0 results, say so in `status.md`, do not invent. For `04,05,06,intent` you MUST cite `P#`/`FR-#` — inventing a new pain is a failure.
+| Doc | Search / Derive | Type Needed | Examples | What to compile |
+|---|---|---|---|---|
+| `02-research.md` | Search `{idea} pain, {idea} reddit, {idea} alternative, {idea} complaint` on Reddit/X/HN/G2 | `web_search` + `web_fetch` | Tavily/Exa/Brave/WebSearch + Firecrawl/Exa_Fetch/WebFetch | 12 pains P1-P12, each with Quote + URL + Date |
+| `03-competitive.md` | Search `{idea} vs, {idea} alternative, {idea} pricing` | `web_search` | Tavily/Exa/Brave/WebSearch | 9+ competitors with URL + pricing table ($), 5+ wedges |
+| `04-personas.md` | **DERIVE FROM `02-research.md` P# ONLY** — no new search | — | — | 5 personas, each pain links to P#, + affinity map |
+| `05-jtbd.md` | **DERIVE FROM `02,03,04`** | — | — | JTBD per persona + empathy maps + pain matrix |
+| `06-prd.md` | **DERIVE FROM `02,04,05`** | — | — | ≥3 flows, ≥10 FRs (FR-01...), NFRs, risks |
+| `intent.md` | **DISTILL FROM `06-prd.md`** | — | — | ≥3 invariants (I1:) with Check command + ≥2 oracles |
+| `system.md` | **DISTILL FROM `06,02`** | repo scan | — | Pinned stack + architecture + decisions |
+| `guardrails.md` | **DISTILL FROM `system.md`** | — | — | Security/perf/a11y/i18n with Check commands |
+| `features/*.md` | **1 per flow from `06-prd.md`** — `042-kebab-case.md` | — | — | Invariants + oracles + acceptance + Source Trace |
+
+**If you have no tool of that type:** STOP. Do NOT invent. Write to `agent/status.md`: `BLOCKED: No web_search available — human must provide 02-research.md or connect a search connector (Tavily/Exa/Brave)` and append to `joint/decisions.log.md`. Ask human directly in chat. Also log: `Inform user in chat + docs that web search is unavailable and human must paste research or enable a connector.`
+
+**Anti-hallucination:** If your `web_search` returns 0 results, say so in `status.md`, do not invent. For `04,05,06,intent` you MUST cite `P#`/`FR-#` — inventing a new pain is a failure.
 
 ## ONE DOC PER FEATURE — HARD RULE
 
