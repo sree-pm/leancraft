@@ -23,7 +23,7 @@
 
 ## Source Trace
 
-- FR-01, FR-05; Persona P1
+- FR-01, FR-05; Success Metric: Activation; Assumption: [from 06-prd.md]; Persona P1
 
 ## Validation
 

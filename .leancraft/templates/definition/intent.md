@@ -24,7 +24,7 @@
 
 ## Source Trace
 
-- Derived from: 06-prd.md FR-01, FR-05; 04-personas.md P1
+- Derived from: 06-prd.md FR-01, FR-05; Success Metric: Activation; Assumption: [from 06-prd.md]; 04-personas.md P1
 
 ## Validation
 
