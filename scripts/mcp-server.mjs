@@ -4,6 +4,7 @@
 
 import fs from "fs";
 import path from "path";
+import { execSync } from "child_process";
 
 const root = process.cwd();
 const configPath = path.join(root, ".leancraft/config.json");
@@ -65,7 +66,6 @@ function handleTool(name, args) {
     return { ok: true, proposal: p, message: "Proposal written. Ask human: [🔓 Unlock / ❌ Don't]" };
   }
   if (name === "leancraft_validate") {
-    const { execSync } = awaitImport();
     try {
       const out = execSync("node scripts/leancraft-validate.mjs", { encoding: "utf8" });
       return { pass: true, output: out };
@@ -75,8 +75,6 @@ function handleTool(name, args) {
   }
   return { error: "unknown tool" };
 }
-
-function awaitImport() { return { execSync: (await import("child_process")).execSync }; }
 
 // Minimal JSON-RPC loop
 let buf = "";
@@ -120,4 +118,5 @@ function respond(id, result) {
 // also support simple test mode
 if (process.argv.includes("--test")) {
   console.log(JSON.stringify(handleTool("leancraft_read_intent", {}), null, 2));
+  process.exit(0);
 }
