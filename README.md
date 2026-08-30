@@ -163,6 +163,12 @@ npm run leancraft:validate  # or npx leancraft validate
 # Exit 0 = PASS → Lock allowed, 1 = FAIL → Lock blocked
 ```
 
+## Cost & ROI — Dogfooded
+
+> Doc overhead is `3.2k` tokens/read (`~$0.01`), `30–40k` one-time to draft 13 docs. Per feature it saves `~10k` tokens & `~0.7h` after 2 features — measured on this repo itself (`45k chars / 11.3k tokens` total on disk, `3.2k` per run, 2026-08-30).
+
+Assumptions: Claude pricing ($3/$15 per 1M), 1 feature = `10k` gen + `15k` debug vibe vs `13k` doc-first. Based on METR -19% slowdown without context and GitClear 41% churn. Your stack will vary — track `joint/ledger.jsonl` $/feature and `agent/status.md` time to verify. PR your numbers — we publish community ROI.
+
 ## Ownership
 
 - `human/**` — READ-ONLY when `locked:true` (see `.github/CODEOWNERS`, `.git/hooks/pre-commit`). Agent must propose.
