@@ -1,4 +1,4 @@
-# Leancraft — Doc-First Verified Agency
+# Leancraft - Doc-First Verified Agency
 
 > Stop vibe coding. Start owning.
 
