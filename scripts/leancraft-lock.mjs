@@ -2,6 +2,7 @@
 // leancraft lock/unlock — flips config.json locked + enforces via hook
 import fs from "fs";
 import path from "path";
+import { execSync } from "child_process";
 
 const action = process.argv[2]; // lock | unlock
 if (!["lock", "unlock"].includes(action)) {
@@ -13,7 +14,6 @@ const cfg = JSON.parse(fs.readFileSync(configPath, "utf8"));
 
 if (action === "lock") {
   // validate first
-  const { execSync } = await import("child_process");
   try {
     execSync("node scripts/leancraft-validate.mjs", { stdio: "inherit" });
   } catch {
