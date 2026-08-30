@@ -68,7 +68,8 @@ If human asks for bad idea (global, string-concat SQL, innerHTML, no scope), che
 
 ## 8. BUDGET & SANDBOX
 
-- Max $5, 25 calls, 30 min. Network `deny-all` except npm allowlist. Never read `.env`, `DATABASE_URL`, `GITHUB_TOKEN` is read-only.
+- Max $5, 25 calls, 30 min. Network `deny-all` except `allowlist` in `.leancraft/config.json` (default: `registry.npmjs.org`, `registry.yarnpkg.com`, `pypi.org` — covers `npm`/`pnpm`/`bun`/`npx`, they all use the same registry). Never read `.env`, `DATABASE_URL`, `GITHUB_TOKEN` is read-only.
+- **Non-tech: you never edit allowlist manually.** Agent detects needed hosts from `system.md` / `package.json` / network error, then asks you in chat: `[Allow api.stripe.com? / Deny]` + writes a proposal to `agent/proposals/`. You click Allow → agent updates `config.json` for you. No manual JSON edit.
 
 ## 9. DEFINITION OF DONE — BEFORE CLAIMING DONE
 
