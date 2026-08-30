@@ -97,9 +97,9 @@
       },
       "guardrails.md": {
         "required": true,
-        "description": "Security, perf, a11y, i18n rules",
+        "description": "Security, perf, a11y, i18n, legal rules",
         "template": "templates/definition/guardrails.md",
-        "sections": ["security", "performance", "a11y", "i18n"]
+        "sections": ["security", "performance", "a11y", "i18n", "legal"]
       },
       "features/*.md": {
         "required": false,

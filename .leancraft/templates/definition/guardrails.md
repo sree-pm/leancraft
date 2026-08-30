@@ -26,7 +26,14 @@
 - No hardcoded strings, use `t()` keys
 - Check: `i18n:check` script
 
+## Legal / Privacy (from 06-prd Legal)
+
+- Data / PII: (from 07-data.md if exists)
+- IP / License:
+- Regulatory: (GDPR, etc.)
+- Checks: legal review
+
 ## Validation
 
-- [ ] 4 sections present
+- [ ] 5 sections present
 - [ ] Each has Check command
