@@ -91,9 +91,9 @@
       },
       "system.md": {
         "required": true,
-        "description": "Architecture, stack, decisions",
+        "description": "Architecture, stack, decisions, integrations, deployment",
         "template": "templates/definition/system.md",
-        "sections": ["stack", "architecture", "decisions", "data-model"]
+        "sections": ["stack", "architecture", "decisions", "integrations", "deployment", "data-model"]
       },
       "guardrails.md": {
         "required": true,

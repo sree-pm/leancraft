@@ -21,10 +21,24 @@
 |---|---|---|---|
 | Auth | ... | ... | ... |
 
+## Integrations / Dependencies (from 06-prd Stakeholders)
+
+| System | API / Host | Why | Allowlist |
+|---|---|---|---|
+| ... | ... | ... | → config |
+
+## Deployment / Infra (light)
+
+- Hosting: ...
+- Env: dev / staging / prod
+- CI: ...
+
 ## Data Model
 
 - Tables: ...
 - PII handling: (links to discovery/07-data.md if exists)
+- Agents: (links to 08-agents.md if exists)
+- UX: (links to 10-ux.md if exists)
 
 ## Validation
 
