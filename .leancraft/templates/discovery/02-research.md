@@ -1,39 +1,104 @@
-# 02 — Research — 12 Pain Themes with Real Quotes
+# 02 — Research — 12 Pain Themes (P1-P12)
 
-> REQUIRED: 12 pain themes (P1-P12), each with Quote + Source URL + Date. Min 12 sources across Reddit/X/HN/G2.
+> Status: DRAFT — Agent drafts, human verifies quotes. Min 12 themes (no max — add P13-P20 if needed). Sources Inventory holds your 50–100 raw posts — more sources = stronger themes. Validator checks ≥12.
 
-## Pain Themes
+## P1: [Theme]
 
-### P1: [Theme name]
-- **Quote:** "[verbatim quote]"
-- **Source:** [URL] — Date: YYYY-MM-DD — Platform: Reddit/X/HN/G2
-- **Frequency:** how many times seen
+- **Quote:** "[verbatim]"
+- **Source:** https://... — Date: YYYY-MM-DD — Platform: Reddit/X/HN/G2
+- **Frequency:**
 - **Severity:** high/medium/low
 
-### P2: [Theme name]
-- **Quote:** "[verbatim quote]"
-- **Source:** [URL] — Date: YYYY-MM-DD
-...
+## P2: [Theme]
 
-### P12: [Theme name]
-- **Quote:** "[verbatim quote]"
-- **Source:** [URL] — Date: YYYY-MM-DD
+- **Quote:** "[verbatim]"
+- **Source:** https://... — Date: YYYY-MM-DD — Platform: Reddit/X/HN/G2
+- **Frequency:**
+- **Severity:** high/medium/low
 
-## Sources Inventory
+## P3: [Theme]
+
+- **Quote:** "[verbatim]"
+- **Source:** https://... — Date: YYYY-MM-DD — Platform: Reddit/X/HN/G2
+- **Frequency:**
+- **Severity:** high/medium/low
+
+## P4: [Theme]
+
+- **Quote:** "[verbatim]"
+- **Source:** https://... — Date: YYYY-MM-DD — Platform: Reddit/X/HN/G2
+- **Frequency:**
+- **Severity:** high/medium/low
+
+## P5: [Theme]
+
+- **Quote:** "[verbatim]"
+- **Source:** https://... — Date: YYYY-MM-DD — Platform: Reddit/X/HN/G2
+- **Frequency:**
+- **Severity:** high/medium/low
+
+## P6: [Theme]
+
+- **Quote:** "[verbatim]"
+- **Source:** https://... — Date: YYYY-MM-DD — Platform: Reddit/X/HN/G2
+- **Frequency:**
+- **Severity:** high/medium/low
+
+## P7: [Theme]
+
+- **Quote:** "[verbatim]"
+- **Source:** https://... — Date: YYYY-MM-DD — Platform: Reddit/X/HN/G2
+- **Frequency:**
+- **Severity:** high/medium/low
+
+## P8: [Theme]
+
+- **Quote:** "[verbatim]"
+- **Source:** https://... — Date: YYYY-MM-DD — Platform: Reddit/X/HN/G2
+- **Frequency:**
+- **Severity:** high/medium/low
+
+## P9: [Theme]
+
+- **Quote:** "[verbatim]"
+- **Source:** https://... — Date: YYYY-MM-DD — Platform: Reddit/X/HN/G2
+- **Frequency:**
+- **Severity:** high/medium/low
+
+## P10: [Theme]
+
+- **Quote:** "[verbatim]"
+- **Source:** https://... — Date: YYYY-MM-DD — Platform: Reddit/X/HN/G2
+- **Frequency:**
+- **Severity:** high/medium/low
+
+## P11: [Theme]
+
+- **Quote:** "[verbatim]"
+- **Source:** https://... — Date: YYYY-MM-DD — Platform: Reddit/X/HN/G2
+- **Frequency:**
+- **Severity:** high/medium/low
+
+## P12: [Theme]
+
+- **Quote:** "[verbatim]"
+- **Source:** https://... — Date: YYYY-MM-DD — Platform: Reddit/X/HN/G2
+- **Frequency:**
+- **Severity:** high/medium/low
+
+## Sources Inventory (50–100 raw posts — more = stronger)
 
 | # | URL | Platform | Date | Pain |
 |---|---|---|---|---|
-| 1 | https://... | Reddit | 2026-... | P1 |
-...
+| 1 |  |  |  | P1 |
+| ... |  |  |  |  |
 
 ## Synthesis
 
-- Top 3 pains by frequency:
-- Underserved vs saturated:
+- Top 3 by frequency:
 
 ## Validation
 
-- [ ] 12 themes present (validator checks P1-P12 headings)
+- [ ] P1-P12 headings present (add P13+ if needed — validator checks ≥12)
 - [ ] Each has Quote + URL + Date
-- [ ] ≥12 unique URLs across ≥2 platforms
-- [ ] No hallucinated URLs (must be fetchable)
+- [ ] ≥12 unique URLs (50–100 recommended)
