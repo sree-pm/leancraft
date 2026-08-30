@@ -7,15 +7,11 @@ const hook = `#!/bin/sh
 # leancraft pre-commit hook — enforces ownership + runs validate
 set -e
 LOCKED=$(node -p "JSON.parse(require('fs').readFileSync('.leancraft/config.json','utf8')).locked" 2>/dev/null || echo "false")
-if [ "$LOCKED" = "true" ]; then
-  # Check if agent (detected via env or staged files) tries to touch human/**
-  if git diff --cached --name-only | grep -q "^.leancraft/human/"; then
-    # Allow if human is committing (check git config user or LEANCRAFT_HUMAN env)
-    if [ "$LEANCRAFT_HUMAN" != "1" ] && [ "$LEANCRAFT_AGENT" = "1" ]; then
-      echo "✖ BLOCKED: .leancraft/human/** is LOCKED. Agent must write to .leancraft/agent/proposals/ instead."
-      echo "  Human unlock: npm run leancraft:unlock  (or chat [🔓 Unlock])"
-      exit 1
-    fi
+if [ "$LOCKED" = "true" ] && git diff --cached --name-only | grep -q "^.leancraft/human/"; then
+  if [ "$LEANCRAFT_HUMAN" != "1" ]; then
+    echo "✖ BLOCKED: .leancraft/human/** is LOCKED. Agent must write to .leancraft/agent/proposals/ instead."
+    echo "  Human unlock: npx leancraft unlock  (or chat [🔓 Unlock])"
+    exit 1
   fi
 fi
 # Always run validate as warning (don't block commit, just inform)
