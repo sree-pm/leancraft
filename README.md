@@ -6,7 +6,7 @@
 
 Fixes the 25 vibe-coding failures (62% vulns, 9-sec DB wipes, 19% slowdown, context rot) with one `npx` install.
 
-[![npm version](https://img.shields.io/npm/v/leancraft)](https://www.npmjs.com/package/leancraft) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![npm version](https://img.shields.io/npm/v/leancraft)](https://www.npmjs.com/package/leancraft) [![npm downloads](https://img.shields.io/npm/dm/leancraft)](https://www.npmjs.com/package/leancraft) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ## Why
 
