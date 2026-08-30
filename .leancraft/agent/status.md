@@ -22,7 +22,7 @@
 
 - validate FAIL — see errors
 
-## Budget
+## Budget per run
 
 - Used: 0 / $5.00 (tracked in joint/ledger.jsonl)
 - Calls: 0 / 25
