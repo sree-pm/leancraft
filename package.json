@@ -1,0 +1,45 @@
+{
+  "name": "leancraft",
+  "version": "0.1.0",
+  "description": "Doc-first verified agency — stop vibe coding, start owning. Tight registry + locked human docs + auto agent context. For Claude Code, Cursor, Opencode, Windsurf.",
+  "type": "module",
+  "bin": {
+    "leancraft": "./bin/leancraft.js"
+  },
+  "files": [
+    "bin/",
+    "scripts/",
+    ".leancraft/",
+    ".claude/",
+    ".cursor/",
+    "AGENTS.md",
+    "CLAUDE.md",
+    ".mcp.json"
+  ],
+  "scripts": {
+    "leancraft:validate": "node scripts/leancraft-validate.mjs",
+    "leancraft:sync": "node scripts/leancraft-sync.mjs",
+    "leancraft:lock": "node scripts/leancraft-lock.mjs lock",
+    "leancraft:unlock": "node scripts/leancraft-lock.mjs unlock",
+    "leancraft:security": "echo 'TODO: wire semgrep + axe + codeql' && npm run leancraft:validate",
+    "prepare": "node scripts/install-hooks.mjs || true",
+    "test": "node scripts/leancraft-validate.mjs"
+  },
+  "keywords": ["ai", "agentic-coding", "vibe-coding", "docs-first", "claude-code", "cursor", "opencode", "mcp", "spec-driven"],
+  "author": "sree-pm",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sree-pm/leancraft.git"
+  },
+  "homepage": "https://github.com/sree-pm/leancraft#readme",
+  "bugs": {
+    "url": "https://github.com/sree-pm/leancraft/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

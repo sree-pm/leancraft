@@ -1,0 +1,147 @@
+{
+  "version": "1.0.0",
+  "name": "leancraft",
+  "description": "Doc-first verified agency — the registry is the contract. Agent MUST read this first. Lock enforces ownership.",
+  "locked": false,
+  "ownership": {
+    "human": ["human/**"],
+    "agent": ["agent/**"],
+    "joint": ["joint/**"],
+    "denyAgentWrite": ["human/**"],
+    "allowAgentWrite": ["agent/**", "joint/**"],
+    "humanOwners": "@human-owners"
+  },
+  "budget": {
+    "maxCostUSD": 5,
+    "maxToolCalls": 25,
+    "maxWallClockMinutes": 30,
+    "sandbox": "gvisor",
+    "network": "deny-all",
+    "allowlist": ["registry.npmjs.org", "registry.yarnpkg.com", "pypi.org"],
+    "forbiddenEnv": [".env", "DATABASE_URL", "AWS_*", "GITHUB_TOKEN"],
+    "githubTokenScope": "read-only"
+  },
+  "sprintGates": {
+    "prototypeRequires": "human/definition/intent.md",
+    "testRequires": "joint/test-report.md",
+    "minRealUserNotes": 5
+  },
+  "docRegistry": {
+    "discovery": {
+      "00-index.md": {
+        "required": true,
+        "description": "Reading order, conventions, status legend, how agents should use docs",
+        "template": "templates/discovery/00-index.md",
+        "sections": ["reading-order", "conventions", "status-legend", "agent-usage"]
+      },
+      "00-overview.md": {
+        "required": true,
+        "description": "Elevator pitch, parent+brands shape, tech stack, cost ceiling",
+        "template": "templates/discovery/00-overview.md",
+        "sections": ["elevator-pitch", "brand-shape", "tech-stack", "cost-ceiling"]
+      },
+      "01-vision.md": {
+        "required": true,
+        "description": "North star, 10x-vs-parity, 3-year vision",
+        "template": "templates/discovery/01-vision.md",
+        "sections": ["north-star", "10x-vs-parity", "3-year-vision"]
+      },
+      "02-research.md": {
+        "required": true,
+        "description": "12 pain themes with real quotes",
+        "template": "templates/discovery/02-research.md",
+        "sections": ["pain-themes", "sources"],
+        "rules": { "minPainThemes": 12, "minSources": 12, "requireQuoteAndURL": true }
+      },
+      "03-competitive.md": {
+        "required": true,
+        "description": "Competitor teardown + pricing + wedges",
+        "template": "templates/discovery/03-competitive.md",
+        "sections": ["competitors", "pricing-table", "wedges"],
+        "rules": { "minCompetitors": 9, "requirePricingWithCurrency": true, "minWedges": 5 }
+      },
+      "04-personas.md": {
+        "required": true,
+        "description": "5 personas + affinity map",
+        "template": "templates/discovery/04-personas.md",
+        "sections": ["personas", "affinity-map"],
+        "rules": { "minPersonas": 5, "requireFields": ["goals", "pains", "jtbd"] }
+      },
+      "05-jtbd.md": {
+        "required": true,
+        "description": "JTBD + empathy maps + pain matrix",
+        "template": "templates/discovery/05-jtbd.md",
+        "sections": ["jtbd-statements", "empathy-maps", "pain-matrix"]
+      },
+      "06-prd.md": {
+        "required": true,
+        "description": "Goals, non-goals, flows, functional + NFRs",
+        "template": "templates/discovery/06-prd.md",
+        "sections": ["goals", "non-goals", "user-flows", "functional-reqs", "nfrs", "risks"],
+        "rules": { "minUserFlows": 3, "minFunctionalReqs": 10 }
+      }
+    },
+    "definition": {
+      "intent.md": {
+        "required": true,
+        "description": "Global invariants + oracles (executable spec)",
+        "template": "templates/definition/intent.md",
+        "sections": ["intent", "invariants", "oracles", "non-goals"],
+        "rules": { "minInvariants": 3, "minOracles": 2 }
+      },
+      "system.md": {
+        "required": true,
+        "description": "Architecture, stack, decisions",
+        "template": "templates/definition/system.md",
+        "sections": ["stack", "architecture", "decisions", "data-model"]
+      },
+      "guardrails.md": {
+        "required": true,
+        "description": "Security, perf, a11y, i18n rules",
+        "template": "templates/definition/guardrails.md",
+        "sections": ["security", "performance", "a11y", "i18n"]
+      },
+      "features/*.md": {
+        "required": false,
+        "description": "1 per user flow from 06-prd.md, ephemeral",
+        "template": "templates/definition/feature.md",
+        "sections": ["intent", "invariants", "oracles", "acceptance"],
+        "naming": "NNN-kebab-case.md (e.g., 042-pdf-export.md)"
+      }
+    },
+    "sprint": {
+      "map.md": {
+        "required": false,
+        "description": "Day 1: HMW, target, map (Design Sprint)",
+        "template": "templates/sprint/map.md"
+      },
+      "sketches.md": {
+        "required": false,
+        "description": "Day 2: Crazy 8s + decision"
+      },
+      "test-report.md": {
+        "required": false,
+        "description": "Day 3: 5 real user notes (joint)",
+        "rules": { "minRealUserNotes": 5 }
+      }
+    },
+    "conditional": {
+      "07-data.md": { "if": "product has persistence", "description": "Storage, schema, PII, retention" },
+      "08-agents.md": { "if": "product has agents/bots", "description": "Bot definitions, permissions, HITL" },
+      "09-skills.md": { "if": "product has skills/extensions", "description": "Skill format, dos/donts" },
+      "10-ux.md": { "if": "product has UI", "description": "Wireframes-as-text, IA, a11y" },
+      "11-design-system.md": { "if": "product has UI", "description": "Tokens, components, motion" }
+    }
+  },
+  "researchMap": {
+    "02-research.md": { "tools": ["tavily_search", "firecrawl"], "queries": ["{idea} pain", "{idea} reddit", "{idea} alternative"], "requireURLs": true },
+    "03-competitive.md": { "tools": ["tavily_search"], "requirePricing": true },
+    "04-personas.md": { "derivedFrom": "02-research.md", "noNewSearch": true },
+    "06-prd.md": { "derivedFrom": ["02-research.md", "04-personas.md", "05-jtbd.md"] }
+  },
+  "validation": {
+    "command": "npm run leancraft:validate",
+    "blockLockIfFail": true,
+    "checks": ["required-docs", "required-sections", "min-counts", "requireURLs", "no-placeholders"]
+  }
+}

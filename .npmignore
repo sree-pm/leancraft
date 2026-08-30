@@ -1,0 +1,5 @@
+.git/
+.github/
+.opencode/
+node_modules/
+*.log

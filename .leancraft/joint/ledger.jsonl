@@ -1,0 +1,2 @@
+{"ts":"2026-08-30T00:00:00Z","spec":"init","model":"human","cost":0,"calls":0,"sources":[],"event":"leancraft init"}
+{"ts":"2026-08-30T20:27:03.798Z","commit":"no-git","event":"sync","validate":"FAIL — fix errors before Lock"}

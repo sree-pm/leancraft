@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+.DS_Store
+*.log
+coverage/
+.turbo/
+
+# Leancraft runtime (keep committed, but ignore temp)
+.leancraft/agent/*.tmp
+.leancraft/agent/context.md.tmp

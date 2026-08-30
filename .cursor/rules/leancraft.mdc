@@ -1,0 +1,22 @@
+---
+description: Leancraft doc-first guardrails — always active
+globs: ["**/*"]
+alwaysApply: true
+---
+
+# Leancraft — Doc-First
+
+You are in a Leancraft repo. Before any code:
+
+1. Read `.leancraft/config.json` (registry, locked, budget)
+2. Read `.leancraft/human/discovery/00-index.md` → `00-overview.md`
+3. Read `.leancraft/human/definition/intent.md` + `guardrails.md`
+4. Read `.leancraft/agent/context.md`
+
+## Rules
+
+- `human/**` is READ-ONLY when `locked:true`. Write proposals to `agent/proposals/NNN-*.md` instead.
+- Only create docs in `config.json.docRegistry`. Each needs required sections + min counts. Run `npm run leancraft:validate` before Lock.
+- One doc per feature: `human/definition/features/NNN-kebab-case.md` (1 per flow from 06-prd.md). Must have invariants + oracles + Source Trace.
+- Research per doc (see AGENTS.md research map): 02 needs 12 quotes with URL+Date, 03 needs 9 competitors with $ pricing, 04/05 derive from P# — do not invent pains. Never hallucinate URLs.
+- Budget: $5 / 25 calls / 30 min. Never read .env. Never claim done while validate is red.

@@ -1,0 +1,15 @@
+name: leancraft
+on: [push, pull_request]
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+      - run: node scripts/leancraft-validate.mjs
+      - run: node scripts/leancraft-sync.mjs
+      - run: |
+          echo "TODO: add semgrep, codeql, axe here"
+          # semgrep --config .leancraft/human/definition/guardrails.md
+          # npx axe-core
