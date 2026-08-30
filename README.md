@@ -14,7 +14,7 @@ Vibe coding: `Prompt → Code → Hope`. Leancraft: `Doc (locked) → Bounded Ag
 
 - **Tight registry:** 13 docs with required sections + min counts (12 pains P1-P12, 9 competitors + $, 5 personas, 3 flows + 10 FRs). `validate` blocks Lock if you miss one.
 - **Ownership:** `human/**` 🔒, `agent/**` 🤖 auto, `joint/**` 👥. Hook rejects agent writes to `human/**`.
-- **Anti-hallucination:** Research map per doc — `02-research` must `tavily_search + firecrawl` on Reddit/X/HN/G2, each pain needs `Quote + URL + Date`. `03-competitive` needs real pricing with `$`.
+- **Anti-hallucination:** Research map per doc — `02-research` must `web_search + web_fetch` (Tavily/Exa/Brave/WebSearch + Firecrawl/Exa_Fetch/WebFetch — any counts) on Reddit/X/HN/G2, each pain needs `Quote + URL + Date`. `03-competitive` needs real pricing with `$`.
 - **One doc per feature:** `human/definition/features/042-kebab-case.md` — 1 per flow from PRD.
 
 ## Install — 1 Command
