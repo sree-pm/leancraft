@@ -6,7 +6,7 @@
 
 | # | Name | URL | Pricing | Strength | Weakness |
 |---|---|---|---|---|---|
-| 1 | Grok-bots | https://... | $X/mo |  |  |
+| 1 | [Competitor 1] | https://... | $X/mo |  |  |
 
 ## Pricing Table (must have $)
 
