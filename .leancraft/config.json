@@ -204,8 +204,8 @@
         ]
       },
       "features/*.md": {
-        "required": false,
-        "description": "1 per user flow from 06-prd.md, ephemeral",
+        "required": true,
+        "description": "1 per user flow from 06-prd.md + 1 per built feature found in code scan. Ephemeral per feature, delete when shipped.",
         "template": "templates/definition/feature.md",
         "sections": [
           "intent",
@@ -213,7 +213,11 @@
           "oracles",
           "acceptance"
         ],
-        "naming": "NNN-kebab-case.md (e.g., 042-pdf-export.md)"
+        "naming": "NNN-kebab-case.md (e.g., 042-pdf-export.md)",
+        "rules": {
+          "onePerFlow": true,
+          "alsoScanCode": true
+        }
       }
     },
     "sprint": {

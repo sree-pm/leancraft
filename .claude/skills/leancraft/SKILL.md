@@ -45,7 +45,7 @@ Your `web_search` may be `tavily_search`, `exa_search`, `brave_search`, or `WebS
 | `intent.md` | **DISTILL FROM `06-prd.md`** | — | — | ≥3 invariants (I1:) with Check command + ≥2 oracles (O1:) | 3 I + 2 O |
 | `system.md` | **DISTILL FROM `06,02`** | repo scan | — | Pinned stack + architecture + decisions | pinned versions |
 | `guardrails.md` | **DISTILL FROM `system.md`** | — | — | Security/perf/a11y/i18n with Check commands | 4 sections |
-| `features/*.md` | **1 per flow from `06-prd.md`** — `042-kebab-case.md` | — | — | Invariants + oracles + acceptance + Source Trace: FR-# + Persona | trace present |
+| `features/*.md` | **1 per flow from `06-prd.md` + 1 per built feature in code** — `042-kebab-case.md` — enumerate EVERY `### Flow` in `06-prd.md` AND scan `src/**` for built features, create 1 doc per item | — | — | Invariants + oracles + acceptance + Source Trace: `FR-# + Persona + Flow` | trace present + count equals flows |
 
 **If you have no tool of that type:** STOP. Do NOT invent. Write to `agent/status.md`: `BLOCKED: No web_search available — human must provide 02-research.md or connect a search connector (Tavily/Exa/Brave)` and append to `joint/decisions.log.md`. Ask human directly in chat. Also log: `Inform user in chat + docs that web search is unavailable and human must paste research or enable a connector.`
 

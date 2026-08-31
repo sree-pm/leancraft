@@ -23,6 +23,7 @@
     "leancraft:unlock": "node scripts/leancraft-lock.mjs unlock",
     "leancraft:budget": "node scripts/leancraft-budget.mjs",
     "leancraft:doctor": "node scripts/leancraft-doctor.mjs",
+    "leancraft:features": "node scripts/leancraft-features.mjs",
     "leancraft:security": "echo 'TODO: wire semgrep + axe + codeql' && npm run leancraft:validate",
     "prepare": "node scripts/install-hooks.mjs || true",
     "test": "node scripts/leancraft-validate.mjs"

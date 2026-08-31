@@ -26,6 +26,7 @@ Usage:
   npx leancraft status             Show lock state + validate summary
   npx leancraft budget             Show per-run vs lifetime cost from ledger
   npx leancraft doctor             Check git/node/validate/allowlist health
+  npx leancraft features           Generate 1 doc per flow from 06-prd.md + scan built code
   npx leancraft mcp                Print MCP config snippet
 
 See: https://github.com/sree-pm/leancraft — start at .leancraft/README.md
@@ -147,6 +148,7 @@ else if (cmd === "status") {
 }
 else if (cmd === "budget") runScript("leancraft-budget.mjs");
 else if (cmd === "doctor") runScript("leancraft-doctor.mjs");
+else if (cmd === "features") runScript("leancraft-features.mjs");
 else if (cmd === "mcp") {
   console.log(fs.readFileSync(path.join(pkgRoot, ".mcp.json"), "utf8"));
 }
