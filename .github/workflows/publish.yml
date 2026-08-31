@@ -19,8 +19,6 @@ jobs:
           node-version: 20
           registry-url: https://registry.npmjs.org
       - run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   release:
     needs: publish
@@ -29,19 +27,21 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      - run: npx changelog-generator@latest || echo "no changelog generator, using commits"
       - name: Generate release notes from commits
         id: notes
         run: |
-          NOTES=$(git log $(git describe --tags --abbrev=0 HEAD~1)..HEAD --pretty=format:"- %s (%h)" 2>/dev/null || git log --pretty=format:"- %s (%h)" -n 20)
+          PREV=$(git describe --tags --abbrev=0 HEAD~1 2>/dev/null || echo "")
+          if [ -n "$PREV" ]; then
+            RANGE="$PREV..${{ github.ref_name }}"
+            NOTES=$(git log $RANGE --pretty=format:"- %s (%h)")
+          else
+            NOTES=$(git log --pretty=format:"- %s (%h)" -n 20)
+          fi
           {
             echo "## What's Changed"
             echo ""
             if [ -z "$NOTES" ]; then
-              echo "- See commit history"
+              echo "- Initial release"
             else
               echo "$NOTES"
             fi
@@ -52,7 +52,11 @@ jobs:
             echo '```'
             echo ""
             echo "## Full Changelog"
-            echo "https://github.com/${{ github.repository }}/compare/$(git describe --tags --abbrev=0 HEAD~1 2>/dev/null || echo 'v0.0.0')...${{ github.ref_name }}"
+            if [ -n "$PREV" ]; then
+              echo "https://github.com/${{ github.repository }}/compare/$PREV...${{ github.ref_name }}"
+            else
+              echo "https://github.com/${{ github.repository }}/commits/${{ github.ref_name }}"
+            fi
           } > release-notes.md
           cat release-notes.md
       - name: Create GitHub Release
