@@ -33,6 +33,24 @@ npm install -D leancraft
 npx leancraft init
 ```
 
+### Permanent skill (no per-project install)
+
+Drop the SKILL.md in your global agents dir to load on **every** project + chat:
+
+```bash
+# Claude Code
+mkdir -p ~/.claude/skills/leancraft
+cp .claude/skills/leancraft/SKILL.md ~/.claude/skills/leancraft/SKILL.md
+
+# Opencode (Windows: C:\Users\<you>\.opencode\)
+mkdir -p ~/.opencode/skills/leancraft ~/.opencode/rules
+cp .opencode/skills/leancraft/SKILL.md ~/.opencode/skills/leancraft/SKILL.md
+# Also create ~/.opencode/rules/leancraft.md with alwaysApply: true to auto-walk
+# you through 13 docs on any "I have an idea" / "build X" / "let's brainstorm" message
+```
+
+Now every new project — and every brainstorm chat — auto-loads Leancraft. No `npx init` needed.
+
 ## Quickstart (first idea)
 
 ```bash
