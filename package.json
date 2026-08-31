@@ -1,6 +1,6 @@
 {
   "name": "leancraft",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Doc-first verified agency — stop vibe coding, start owning. Tight registry + locked human docs + auto agent context. For Claude Code, Cursor, Opencode, Windsurf.",
   "type": "module",
   "bin": {
