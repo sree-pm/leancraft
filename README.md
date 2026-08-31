@@ -8,7 +8,7 @@ Fixes the 25 vibe-coding failures (62% vulns, 9-sec DB wipes, 19% slowdown, cont
 
 > **Provenance:** `v0.1.0` published without provenance (Socket 76), `v0.1.1+` with trusted publishing + Sigstore provenance (Socket 90+).
 
-[![npm version](https://img.shields.io/npm/v/leancraft)](https://www.npmjs.com/package/leancraft) [![npm downloads](https://img.shields.io/npm/dm/leancraft)](https://www.npmjs.com/package/leancraft) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![npm version](https://img.shields.io/npm/v/leancraft)](https://www.npmjs.com/package/leancraft) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ## Why
 
@@ -188,6 +188,8 @@ npm run leancraft:validate  # or npx leancraft validate
 > Doc overhead is `3.2k` tokens/read (`~$0.01`), `30–40k` one-time to draft 13 docs. Per feature it saves `~10k` tokens & `~0.7h` after 2 features — measured on this repo itself (`45k chars / 11.3k tokens` total on disk, `3.2k` per run, 2026-08-30).
 
 Assumptions: Claude pricing ($3/$15 per 1M), 1 feature = `10k` gen + `15k` debug vibe vs `13k` doc-first. Based on METR -19% slowdown without context and GitClear 41% churn. Your stack will vary — track `joint/ledger.jsonl` $/feature and `agent/status.md` time to verify. PR your numbers — we publish community ROI.
+
+> We removed the `npm downloads` badge — install count is misleading: it counts *`npm install`* runs (one per system/agent), not unique users or actual use. Track your own via `joint/ledger.jsonl` instead.
 
 ## Ownership
 
