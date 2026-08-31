@@ -12,7 +12,7 @@
 ## Architecture
 
 ```
-[TODO: diagram]
+[FILL: diagram]
 client → worker → D1
 ```
 

@@ -13,9 +13,13 @@ You are in a Leancraft repo. This skill is law. Follow `.leancraft/config.json`,
 
 If any `human/**` is DRAFT or missing, **do not code**. Draft docs first.
 
-## 2. OWNERSHIP — HARD RULES
+After bootstrap (all 13 discovery docs LOCKED): **NEVER re-read `human/discovery/**` again.** For coding, read ONLY `human/definition/intent.md` + `human/definition/guardrails.md` + `agent/context.md` (500 lines). `context.md` already contains the distilled summary of discovery — re-reading 11k tokens of raw research on every feature causes context rot. If you need persona detail, read `context.md` summary, not the full `04-personas.md`.
 
-- `human/**` — READ-ONLY when `locked:true`. NEVER call `write`/`edit` on it. Hook will reject. To change it, write `agent/proposals/NNN-<target>.md` with `Source, Why, Diff` and ask human `[🔓 Unlock / ❌ Don't]`.
+`AGENTS.md` is the single source of truth; `.claude/skills/leancraft/SKILL.md` and `.opencode/skills/leancraft/SKILL.md` are mirrors. Read `AGENTS.md` first.
+
+## 2. OWNERSHIP — HARD RULES (write-time enforced, hook is backup)
+
+- `human/**` — READ-ONLY when `locked:true`. NEVER call `write`/`edit` on it — call `node scripts/guard-write.mjs <target>` first; if it says BLOCKED, write to `agent/proposals/NNN-<target>.md` with `Source, Why, Diff` and ask human `[🔓 Unlock / ❌ Don't]`. Direct `write` will be rejected by guard (primary) and hook (backup).
 - `agent/**` — You own. Keep `agent/context.md` (max 500 lines) + `agent/status.md` updated. Call `leancraft:sync` logic.
 - `joint/**` — Append only. Cite `source doc + line`.
 
@@ -68,7 +72,7 @@ If human asks for bad idea (global, string-concat SQL, innerHTML, no scope), che
 
 ## 8. BUDGET & SANDBOX
 
-- Max $5, 25 calls, 30 min. Network `deny-all` except `allowlist` in `.leancraft/config.json` (default: `registry.npmjs.org`, `registry.yarnpkg.com`, `pypi.org` — covers `npm`/`pnpm`/`bun`/`npx`, they all use the same registry). Never read `.env`, `DATABASE_URL`, `GITHUB_TOKEN` is read-only.
+- Recommended $5, 25 calls, 30 min per run (see `scripts/leancraft-budget.mjs` for lifetime total from `ledger.jsonl`). Network `deny-all` except `allowlist` in `.leancraft/config.json` (default: `registry.npmjs.org`, `registry.yarnpkg.com`, `pypi.org` — covers `npm`/`pnpm`/`bun`/`npx`, they all use the same registry). Never read `.env`, `DATABASE_URL`, `GITHUB_TOKEN` is read-only.
 - **Non-tech: you never edit allowlist manually.** Agent detects needed hosts from `system.md` / `package.json` / network error, then asks you in chat: `[Allow api.stripe.com? / Deny]` + writes a proposal to `agent/proposals/`. You click Allow → agent updates `config.json` for you. No manual JSON edit.
 
 ## 9. DEFINITION OF DONE — BEFORE CLAIMING DONE

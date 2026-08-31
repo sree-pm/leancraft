@@ -19,14 +19,16 @@ leancraft — doc-first verified agency
 
 Usage:
   npx leancraft init [--force]     Scaffold .leancraft/ + hooks + skills in current repo
-  npx leancraft validate           Check registry (docs, sections, min counts, URLs, TODO)
+  npx leancraft validate [--fetch] Check registry (docs, sections, min counts, URLs, [FILL:])
   npx leancraft sync               Regenerate agent/context.md + status.md + ledger
   npx leancraft lock               Lock human/** (validate must PASS first)
   npx leancraft unlock             Unlock human/** for agent drafting
   npx leancraft status             Show lock state + validate summary
+  npx leancraft budget             Show per-run vs lifetime cost from ledger
+  npx leancraft doctor             Check git/node/validate/allowlist health
   npx leancraft mcp                Print MCP config snippet
 
-See: https://github.com/sree-pm/leancraft
+See: https://github.com/sree-pm/leancraft — start at .leancraft/README.md
 `);
 }
 
@@ -39,6 +41,12 @@ async function init() {
   const force = args.includes("--force");
   const dest = process.cwd();
   const src = path.join(pkgRoot, ".leancraft");
+
+  // Ensure git repo — lock needs .git/hooks
+  if (!fs.existsSync(path.join(dest, ".git"))) {
+    console.log("No .git found — running git init...");
+    try { execSync("git init", { stdio: "inherit", cwd: dest }); } catch {}
+  }
 
   // Copy .leancraft if not exists
   if (fs.existsSync(path.join(dest, ".leancraft")) && !force) {
@@ -91,6 +99,25 @@ async function init() {
     execSync(`node "${path.join(pkgRoot, "scripts/install-hooks.mjs")}"`, { stdio: "inherit" });
   } catch {}
 
+  // Conditional stubs — auto-detect UI/DB/Agents so agent doesn't skip needed docs
+  try {
+    const hasUI = fs.existsSync(path.join(dest, "src")) && (() => { try { return execSync("find src -name '*.tsx' -o -name '*.jsx' | head -1", { encoding: "utf8", cwd: dest }).trim().length > 0; } catch { return false; }})();
+    const hasDB = fs.existsSync(path.join(dest, "wrangler.jsonc")) || fs.existsSync(path.join(dest, "prisma")) || fs.existsSync(path.join(dest, "drizzle"));
+    const pkg = (() => { try { return JSON.parse(fs.readFileSync(path.join(dest, "package.json"), "utf8")); } catch { return {}; }})();
+    const hasAgents = pkg.dependencies && (pkg.dependencies["openai"] || pkg.dependencies["@anthropic-ai/sdk"]);
+    const stubs = [];
+    if (hasUI) stubs.push(["10-ux.md", "UX — wireframes-as-text"]);
+    if (hasDB) stubs.push(["07-data.md", "Data — schema, PII"]);
+    if (hasAgents) stubs.push(["08-agents.md", "Agents — bot definitions"]);
+    for (const [file, desc] of stubs) {
+      const p = path.join(dest, `.leancraft/human/discovery/${file}`);
+      if (!fs.existsSync(p)) {
+        fs.writeFileSync(p, `# ${file} — Conditional (auto-detected)\n> Status: DRAFT — ${desc}. Fill or delete if not needed.\n`);
+        console.log(`+ discovery/${file} (auto-detected)`);
+      }
+    }
+  } catch {}
+
   console.log(`
 ✓ leancraft init done.
 
@@ -118,6 +145,8 @@ else if (cmd === "status") {
   } catch { console.log("No .leancraft/config.json — run npx leancraft init"); }
   runScript("leancraft-validate.mjs");
 }
+else if (cmd === "budget") runScript("leancraft-budget.mjs");
+else if (cmd === "doctor") runScript("leancraft-doctor.mjs");
 else if (cmd === "mcp") {
   console.log(fs.readFileSync(path.join(pkgRoot, ".mcp.json"), "utf8"));
 }

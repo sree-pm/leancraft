@@ -4,7 +4,7 @@
 
 ## Elevator Pitch
 
-[TODO: 1 paragraph — what it is, for whom, why now]
+[FILL: 1 paragraph — what it is, for whom, why now]
 
 ## Brand Shape
 

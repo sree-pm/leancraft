@@ -4,7 +4,9 @@
 
 **Leancraft is a doc-first scaffold that locks human intent and leashes agentic coding.** Your agent can draft 12 pains, 5 personas, 50 reqs — but it cannot ship until `validate` passes and you click Lock. After Lock, `human/**` is read-only; agent must propose.
 
-Fixes the 25 vibe-coding failures (62% vulns, 9-sec DB wipes, 19% slowdown, context rot) with one `npx` install.
+Fixes the 25 vibe-coding failures (62% vulns, 9-sec DB wipes, 19% slowdown, context rot) with one `npx` install. See `AUDIT.md` for the full 25 with sources.
+
+> **Provenance:** `v0.1.0` published without provenance (Socket 76), `v0.1.1+` with trusted publishing + Sigstore provenance (Socket 90+).
 
 [![npm version](https://img.shields.io/npm/v/leancraft)](https://www.npmjs.com/package/leancraft) [![npm downloads](https://img.shields.io/npm/dm/leancraft)](https://www.npmjs.com/package/leancraft) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 

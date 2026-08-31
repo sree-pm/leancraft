@@ -4,7 +4,7 @@
 
 ## Intent
 
-[TODO: 1 paragraph, distilled from 06-prd.md]
+[FILL: 1 paragraph, distilled from 06-prd.md]
 
 ## Invariants (≥3, machine-checkable)
 

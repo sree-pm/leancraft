@@ -4,11 +4,22 @@
   "description": "Doc-first verified agency — the registry is the contract. Agent MUST read this first. Lock enforces ownership.",
   "locked": false,
   "ownership": {
-    "human": ["human/**"],
-    "agent": ["agent/**"],
-    "joint": ["joint/**"],
-    "denyAgentWrite": ["human/**"],
-    "allowAgentWrite": ["agent/**", "joint/**"],
+    "human": [
+      "human/**"
+    ],
+    "agent": [
+      "agent/**"
+    ],
+    "joint": [
+      "joint/**"
+    ],
+    "denyAgentWrite": [
+      "human/**"
+    ],
+    "allowAgentWrite": [
+      "agent/**",
+      "joint/**"
+    ],
     "humanOwners": "@human-owners"
   },
   "budget": {
@@ -17,8 +28,17 @@
     "maxWallClockMinutes": 30,
     "sandbox": "gvisor",
     "network": "deny-all",
-    "allowlist": ["registry.npmjs.org", "registry.yarnpkg.com", "pypi.org"],
-    "forbiddenEnv": [".env", "DATABASE_URL", "AWS_*", "GITHUB_TOKEN"],
+    "allowlist": [
+      "registry.npmjs.org",
+      "registry.yarnpkg.com",
+      "pypi.org"
+    ],
+    "forbiddenEnv": [
+      ".env",
+      "DATABASE_URL",
+      "AWS_*",
+      "GITHUB_TOKEN"
+    ],
     "githubTokenScope": "read-only"
   },
   "sprintGates": {
@@ -32,53 +52,114 @@
         "required": true,
         "description": "Reading order, conventions, status legend, how agents should use docs",
         "template": "templates/discovery/00-index.md",
-        "sections": ["reading-order", "conventions", "status-legend", "agent-usage"]
+        "sections": [
+          "reading-order",
+          "conventions",
+          "status-legend",
+          "agent-usage"
+        ]
       },
       "00-overview.md": {
         "required": true,
         "description": "Elevator pitch, parent+brands shape, tech stack, cost ceiling",
         "template": "templates/discovery/00-overview.md",
-        "sections": ["elevator-pitch", "brand-shape", "tech-stack", "cost-ceiling"]
+        "sections": [
+          "elevator-pitch",
+          "brand-shape",
+          "tech-stack",
+          "cost-ceiling"
+        ]
       },
       "01-vision.md": {
         "required": true,
         "description": "North star, 10x-vs-parity, 3-year vision",
         "template": "templates/discovery/01-vision.md",
-        "sections": ["north-star", "10x-vs-parity", "3-year-vision"]
+        "sections": [
+          "north-star",
+          "10x-vs-parity",
+          "3-year-vision"
+        ]
       },
       "02-research.md": {
         "required": true,
         "description": "12 pain themes with real quotes",
         "template": "templates/discovery/02-research.md",
-        "sections": ["pain-themes", "sources"],
-        "rules": { "minPainThemes": 12, "minSources": 12, "requireQuoteAndURL": true }
+        "sections": [
+          "pain-themes",
+          "sources"
+        ],
+        "rules": {
+          "minPainThemes": 12,
+          "minSources": 12,
+          "requireQuoteAndURL": true
+        }
       },
       "03-competitive.md": {
         "required": true,
         "description": "Competitor teardown + pricing + wedges",
         "template": "templates/discovery/03-competitive.md",
-        "sections": ["competitors", "pricing-table", "wedges"],
-        "rules": { "minCompetitors": 9, "requirePricingWithCurrency": true, "minWedges": 5 }
+        "sections": [
+          "competitors",
+          "pricing-table",
+          "wedges"
+        ],
+        "rules": {
+          "minCompetitors": 9,
+          "requirePricingWithCurrency": true,
+          "minWedges": 5
+        }
       },
       "04-personas.md": {
         "required": true,
         "description": "5 personas + affinity map",
         "template": "templates/discovery/04-personas.md",
-        "sections": ["personas", "affinity-map"],
-        "rules": { "minPersonas": 5, "requireFields": ["goals", "pains", "jtbd"] }
+        "sections": [
+          "personas",
+          "affinity-map"
+        ],
+        "rules": {
+          "minPersonas": 5,
+          "requireFields": [
+            "goals",
+            "pains",
+            "jtbd"
+          ]
+        }
       },
       "05-jtbd.md": {
         "required": true,
         "description": "JTBD + empathy maps + pain matrix",
         "template": "templates/discovery/05-jtbd.md",
-        "sections": ["jtbd-statements", "empathy-maps", "pain-matrix"]
+        "sections": [
+          "jtbd-statements",
+          "empathy-maps",
+          "pain-matrix"
+        ]
       },
       "06-prd.md": {
         "required": true,
         "description": "Goals, non-goals, flows, FRs, NFRs + lean overview (metrics, assumptions, RACI, PESTEL, 4 Whys, timeline, legal)",
         "template": "templates/discovery/06-prd.md",
-        "sections": ["goals", "non-goals", "success-metrics", "assumptions", "user-flows", "functional-reqs", "nfrs", "stakeholders", "raci", "pestel", "4-whys", "timeline", "legal", "risks"],
-        "rules": { "minUserFlows": 3, "minFunctionalReqs": 10 }
+        "sections": [
+          "goals",
+          "non-goals",
+          "success-metrics",
+          "assumptions",
+          "user-flows",
+          "functional-reqs",
+          "nfrs",
+          "stakeholders",
+          "raci",
+          "pestel",
+          "4-whys",
+          "timeline",
+          "legal",
+          "risks"
+        ],
+        "rules": {
+          "minUserFlows": 3,
+          "minFunctionalReqs": 10
+        }
       }
     },
     "definition": {
@@ -86,26 +167,52 @@
         "required": true,
         "description": "Global invariants + oracles (executable spec)",
         "template": "templates/definition/intent.md",
-        "sections": ["intent", "invariants", "oracles", "non-goals"],
-        "rules": { "minInvariants": 3, "minOracles": 2 }
+        "sections": [
+          "intent",
+          "invariants",
+          "oracles",
+          "non-goals"
+        ],
+        "rules": {
+          "minInvariants": 3,
+          "minOracles": 2
+        }
       },
       "system.md": {
         "required": true,
         "description": "Architecture, stack, decisions, integrations, deployment",
         "template": "templates/definition/system.md",
-        "sections": ["stack", "architecture", "decisions", "integrations", "deployment", "data-model"]
+        "sections": [
+          "stack",
+          "architecture",
+          "decisions",
+          "integrations",
+          "deployment",
+          "data-model"
+        ]
       },
       "guardrails.md": {
         "required": true,
         "description": "Security, perf, a11y, i18n, legal rules",
         "template": "templates/definition/guardrails.md",
-        "sections": ["security", "performance", "a11y", "i18n", "legal"]
+        "sections": [
+          "security",
+          "performance",
+          "a11y",
+          "i18n",
+          "legal"
+        ]
       },
       "features/*.md": {
         "required": false,
         "description": "1 per user flow from 06-prd.md, ephemeral",
         "template": "templates/definition/feature.md",
-        "sections": ["intent", "invariants", "oracles", "acceptance"],
+        "sections": [
+          "intent",
+          "invariants",
+          "oracles",
+          "acceptance"
+        ],
         "naming": "NNN-kebab-case.md (e.g., 042-pdf-export.md)"
       }
     },
@@ -122,41 +229,129 @@
       "test-report.md": {
         "required": false,
         "description": "Day 3: 5 real user notes (joint)",
-        "rules": { "minRealUserNotes": 5 }
+        "rules": {
+          "minRealUserNotes": 5
+        }
       }
     },
     "conditional": {
-      "07-data.md": { "if": "product has persistence", "description": "Storage, schema, PII, retention" },
-      "08-agents.md": { "if": "product has agents/bots", "description": "Bot definitions, permissions, HITL" },
-      "09-skills.md": { "if": "product has skills/extensions", "description": "Skill format, dos/donts" },
-      "10-ux.md": { "if": "product has UI", "description": "Wireframes-as-text, IA, a11y" },
-      "11-design-system.md": { "if": "product has UI", "description": "Tokens, components, motion" }
+      "07-data.md": {
+        "if": "product has persistence",
+        "description": "Storage, schema, PII, retention"
+      },
+      "08-agents.md": {
+        "if": "product has agents/bots",
+        "description": "Bot definitions, permissions, HITL"
+      },
+      "09-skills.md": {
+        "if": "product has skills/extensions",
+        "description": "Skill format, dos/donts"
+      },
+      "10-ux.md": {
+        "if": "product has UI",
+        "description": "Wireframes-as-text, IA, a11y"
+      },
+      "11-design-system.md": {
+        "if": "product has UI",
+        "description": "Tokens, components, motion"
+      }
     }
   },
   "researchMap": {
     "02-research.md": {
       "requires": [
-        { "type": "web_search", "examples": ["tavily_search", "exa_search", "brave_search", "WebSearch", "web_search"], "purpose": "find URLs with real quotes" },
-        { "type": "web_fetch", "examples": ["firecrawl", "exa_fetch", "WebFetch", "web_fetch", "fetch"], "purpose": "fetch page as markdown to extract verbatim quote" }
+        {
+          "type": "web_search",
+          "examples": [
+            "tavily_search",
+            "exa_search",
+            "brave_search",
+            "WebSearch",
+            "web_search"
+          ],
+          "purpose": "find URLs with real quotes"
+        },
+        {
+          "type": "web_fetch",
+          "examples": [
+            "firecrawl",
+            "exa_fetch",
+            "WebFetch",
+            "web_fetch",
+            "fetch"
+          ],
+          "purpose": "fetch page as markdown to extract verbatim quote"
+        }
       ],
-      "queries": ["{idea} pain", "{idea} reddit", "{idea} alternative", "{idea} complaint"],
+      "queries": [
+        "{idea} pain",
+        "{idea} reddit",
+        "{idea} alternative",
+        "{idea} complaint"
+      ],
       "requireURLs": true,
       "fallback": "If no tool of type web_search/web_fetch exists, STOP. Do NOT invent. Write to agent/status.md: 'BLOCKED: No web_search available — human must provide 02-research.md or connect a search connector (Tavily/Exa/Brave)' and append to joint/decisions.log.md. Ask human to paste research or enable a connector."
     },
     "03-competitive.md": {
-      "requires": [{ "type": "web_search", "examples": ["tavily_search", "exa_search", "brave_search", "WebSearch"], "purpose": "find competitors + pricing pages" }],
+      "requires": [
+        {
+          "type": "web_search",
+          "examples": [
+            "tavily_search",
+            "exa_search",
+            "brave_search",
+            "WebSearch"
+          ],
+          "purpose": "find competitors + pricing pages"
+        }
+      ],
       "requirePricing": true,
       "fallback": "If no web_search, STOP. Write to agent/status.md and ask human. Do NOT invent pricing."
     },
-    "04-personas.md": { "derivedFrom": "02-research.md", "noNewSearch": true, "requires": [] },
-    "05-jtbd.md": { "derivedFrom": ["02-research.md", "03-competitive.md", "04-personas.md"], "requires": [] },
-    "06-prd.md": { "derivedFrom": ["02-research.md", "04-personas.md", "05-jtbd.md"], "requires": [] },
-    "intent.md": { "derivedFrom": ["06-prd.md"], "requires": [] },
-    "system.md": { "derivedFrom": ["06-prd.md", "02-research.md"], "requires": [] }
+    "04-personas.md": {
+      "derivedFrom": "02-research.md",
+      "noNewSearch": true,
+      "requires": []
+    },
+    "05-jtbd.md": {
+      "derivedFrom": [
+        "02-research.md",
+        "03-competitive.md",
+        "04-personas.md"
+      ],
+      "requires": []
+    },
+    "06-prd.md": {
+      "derivedFrom": [
+        "02-research.md",
+        "04-personas.md",
+        "05-jtbd.md"
+      ],
+      "requires": []
+    },
+    "intent.md": {
+      "derivedFrom": [
+        "06-prd.md"
+      ],
+      "requires": []
+    },
+    "system.md": {
+      "derivedFrom": [
+        "06-prd.md",
+        "02-research.md"
+      ],
+      "requires": []
+    }
   },
   "validation": {
     "command": "npm run leancraft:validate",
     "blockLockIfFail": true,
-    "checks": ["required-docs", "required-sections", "min-counts", "requireURLs", "no-placeholders"]
+    "checks": [
+      "required-docs",
+      "required-sections",
+      "min-counts",
+      "requireURLs",
+      "no-placeholders"
+    ]
   }
 }

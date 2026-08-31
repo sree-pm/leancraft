@@ -4,7 +4,7 @@
 
 ## North Star
 
-[TODO: 1 sentence — world with product vs without]
+[FILL: 1 sentence — world with product vs without]
 
 ## 10x vs Parity Matrix
 
