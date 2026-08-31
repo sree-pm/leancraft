@@ -1,11 +1,12 @@
-name: publish
+name: release
 
 on:
   push:
     tags: ["v*"]
 
 permissions:
-  contents: read
+  contents: write
+  pull-requests: write
   id-token: write
 
 jobs:
@@ -18,3 +19,49 @@ jobs:
           node-version: 20
           registry-url: https://registry.npmjs.org
       - run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  release:
+    needs: publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npx changelog-generator@latest || echo "no changelog generator, using commits"
+      - name: Generate release notes from commits
+        id: notes
+        run: |
+          NOTES=$(git log $(git describe --tags --abbrev=0 HEAD~1)..HEAD --pretty=format:"- %s (%h)" 2>/dev/null || git log --pretty=format:"- %s (%h)" -n 20)
+          {
+            echo "## What's Changed"
+            echo ""
+            if [ -z "$NOTES" ]; then
+              echo "- See commit history"
+            else
+              echo "$NOTES"
+            fi
+            echo ""
+            echo "## Install"
+            echo '```bash'
+            echo "npx leancraft@${{ github.ref_name }}"
+            echo '```'
+            echo ""
+            echo "## Full Changelog"
+            echo "https://github.com/${{ github.repository }}/compare/$(git describe --tags --abbrev=0 HEAD~1 2>/dev/null || echo 'v0.0.0')...${{ github.ref_name }}"
+          } > release-notes.md
+          cat release-notes.md
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: ${{ github.ref_name }}
+          draft: false
+          prerelease: ${{ contains(github.ref_name, '-') }}
+          generate_release_notes: false
+          body_path: release-notes.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
